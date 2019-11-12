@@ -15,7 +15,7 @@ class App extends Component {
     };
   }
 
-  getTabContent() {
+  getTabContent = () => {
     switch(this.state.activeId) {
       case 'home':
         return <Home />;
@@ -28,10 +28,18 @@ class App extends Component {
     }
   }
 
+  handleChangeTab = (event) => {
+    const buttonId = event.target.id;
+    this.setState({ activeId: buttonId });
+  }
+
   render() {
     return (
       <div className="App">
-        <TabSelector active={this.state.activeId}/>
+        <TabSelector 
+        activeId={this.state.activeId} 
+        handleChangeTab={this.handleChangeTab}
+        />
         <div className="App-content">
           {
             this.getTabContent()
